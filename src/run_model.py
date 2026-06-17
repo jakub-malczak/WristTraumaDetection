@@ -24,7 +24,11 @@ except FileNotFoundError as e:
     print('File not found!', file=sys.stderr, flush=True)
     exit(1)
 
-model = YOLO(model_config['weights'])
+if 'model_name' in model_config:
+    model = YOLO(model_config['model_name'])
+    model.load(model_config['weights'])
+else:
+    model = YOLO(model_config['weights'])
 
 model.train(
     # -- Training Configuration --
@@ -51,7 +55,10 @@ model.train(
     mixup=model_config.get('mixup', 0.0),
     translate=model_config.get('translate', 0.1),
     scale=model_config.get('scale', 0.5),
-    shear=model_config.get('shear', 0.0)
+    shear=model_config.get('shear', 0.0),
+
+    # -- Transfer learning --
+    freeze=model_config.get('freeze', 0)
 )
 
 wandb.finish()

@@ -1,0 +1,9 @@
+# 15.04.2026
+
+project_name: WristTraumaDetection
+run_name: yolo26l_p2_cbam
+
+model:
+  model_name: "/home/piotrs/Uni/masters/NN/WristTraumaDetection/ultralytics/ultralytics/cfg/models/26/yolo26-p2-cbam.yaml"
+  weights: "yolo26l.pt"
+  # all_default
